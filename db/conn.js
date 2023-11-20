@@ -37,11 +37,11 @@ export async function retornarDados(sql, dados) {
   try {
     let resSql = await (await conn).execute(sql, dados);
     return resSql.rows;
-  } catch (e) {
-    console.log("erro na consulta sql", cr);
+  } catch (error) {
+    console.log("erro na consulta sql", error);
   }
 }
-export async function validarSenha(req, res, password, userPassword, id) {
+export async function signIn(req, res, password, userPassword, id) {
   const checkPassword = await bcryptjs.compare(password, userPassword);
   if (!checkPassword) {
     return res.status(422).json({ msg: "Senha inválida" });
@@ -53,6 +53,7 @@ export async function validarSenha(req, res, password, userPassword, id) {
       maxAge: 3600000,
       httpOnly: true,
     });
+    res.redirect("/dashboard");
     // res.status(200).json({ msg: "Autenticação reaizada com sucesso", token });
   } catch (err) {
     console.log(err);
@@ -61,7 +62,6 @@ export async function validarSenha(req, res, password, userPassword, id) {
 export function checkToken(req, res, next) {
   // const authHeader = req.headers["authorization"];
   const token = req.cookies.jwt;
-  console.log(token);
   if (!token) {
     return res.status(401).json({ msg: "Acesso negado" });
   }

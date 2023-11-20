@@ -2,10 +2,12 @@
   font-family: Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #222;
-  color: #fff;
 }
 
+body {
+  background-color: #30415d;
+  color: #fff;
+}
 /* NAVBAR */
 #logo img {
   height: 40px;
@@ -17,11 +19,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #222;
+  background-color: #031424;
   color: #fff;
-  border-bottom: 1px solid #f6982d;
 }
-
+#navbar a {
+  text-decoration: none;
+}
+#navbar h1 {
+  color: #fff;
+}
 #navbar ul {
   display: flex;
   list-style: none;
@@ -39,19 +45,7 @@
 }
 
 #navbar ul li a:hover {
-  color: #f6982d;
-}
-
-/* CONTAINER */
-.message {
-  padding: 1em;
-  color: #004085;
-  background-color: #cce5ff;
-  border: 1px soli d#b8daff;
-  border-radius: 5px;
-  text-align: center;
-  margin: 0 auto 2em;
-  max-width: 60%;
+  color: #cf6766;
 }
 
 .container {
@@ -70,13 +64,13 @@
 .auth-container h2 {
   margin-bottom: 1em;
   color: #fff;
-  border-left: 4px solid #f6982d;
+  border-left: 4px solid #cf6766;
   padding: 0.3em;
   width: 100px;
 }
 
 .auth-container a {
-  color: #f6982d;
+  color: #cf6766;
 }
 
 .form-control {
@@ -94,14 +88,15 @@
 .form-control textarea {
   padding: 7px;
   border-radius: 3px;
-  border: 1px solid #f6982d;
+  border: 1px solid #cf6766;
 }
 
 form input[type="submit"],
 .btn {
   background-color: transparent;
-  color: #f6982d;
-  border: 2px solid #f6982d;
+  /* color: #cf6766; */
+  color: #cf6766;
+  border: 2px solid #cf6766;
   padding: 0.5em 1.3em;
   margin-bottom: 1em;
   font-size: 1em;
@@ -114,6 +109,6 @@ form input[type="submit"],
 
 form input[type="submit"]:hover,
 .btn:hover {
-  background-color: #f6982d;
+  background-color: #cf6766;
   color: #fff;
 }

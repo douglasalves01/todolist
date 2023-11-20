@@ -1,5 +1,5 @@
 import express from "express";
-import { criarUsuario, retornarDados, validarSenha } from "../db/conn.js";
+import { checkToken, criarUsuario, retornarDados, signIn } from "../db/conn.js";
 
 export class AuthController {
   static login(req, res) {
@@ -21,10 +21,9 @@ export class AuthController {
         }));
       }
       dados.forEach((item) => {
-        validarSenha(req, res, password, item.userPassword, item.id);
+        signIn(req, res, password, item.userPassword, item.id);
       });
     }
-    res.render("auth/login");
   }
   static register(req, res) {
     res.render("auth/register");
@@ -48,5 +47,9 @@ export class AuthController {
       console.log(error);
     }
     res.render("auth/register");
+  }
+  static logout(req, res) {
+    res.clearCookie("jwt");
+    res.redirect("/login");
   }
 }
