@@ -50,7 +50,7 @@ export async function validarSenha(req, res, password, userPassword, id) {
     const secret = process.env.SECRET;
     const token = jwt.sign({ id: id }, secret);
     res.cookie("jwt", token, {
-      maxAge: 360000,
+      maxAge: 3600000,
       httpOnly: true,
     });
     // res.status(200).json({ msg: "Autenticação reaizada com sucesso", token });
@@ -59,8 +59,9 @@ export async function validarSenha(req, res, password, userPassword, id) {
   }
 }
 export function checkToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  // const authHeader = req.headers["authorization"];
+  const token = req.cookies.jwt;
+  console.log(token);
   if (!token) {
     return res.status(401).json({ msg: "Acesso negado" });
   }

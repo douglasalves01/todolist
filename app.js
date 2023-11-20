@@ -4,6 +4,7 @@ import { conn } from "./db/conn.js";
 import { authRouter } from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+import { todoRouter } from "./routes/todoRoutes.js";
 const app = express();
 app.use(
   express.urlencoded({
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", authRouter);
+app.use("/", todoRouter);
 
 app.listen(3333, async () => {
   try {
