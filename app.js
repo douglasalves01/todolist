@@ -2,7 +2,8 @@ import express from "express";
 import { create } from "express-handlebars";
 import { conn } from "./db/conn.js";
 import { authRouter } from "./routes/authRoutes.js";
-
+import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
 const app = express();
 app.use(
   express.urlencoded({
@@ -10,6 +11,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser());
 const hbs = create({
   partialsDir: ["views/partials"],
 });
@@ -20,8 +22,14 @@ app.set("views", "./views");
 
 app.use(express.static("public/"));
 
-app.get("/home", (req, res) => {
-  res.render("home");
+app.use((req, res, next) => {
+  res.locals.jwt = req.cookies.jwt || null; // Defina res.locals.jwt com o valor do cookie jwt ou null se não existir
+  next();
+});
+app.get("/", (req, res) => {
+  // O valor do JWT estará disponível em res.locals.jwt em todas as rotas
+  const jwt = res.locals.jwt;
+  // Restante da lógica da rota...
 });
 
 app.use("/", authRouter);

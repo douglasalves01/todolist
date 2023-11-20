@@ -49,7 +49,11 @@ export async function validarSenha(req, res, password, userPassword, id) {
   try {
     const secret = process.env.SECRET;
     const token = jwt.sign({ id: id }, secret);
-    res.status(200).json({ msg: "Autenticação reaizada com sucesso", token });
+    res.cookie("jwt", token, {
+      maxAge: 360000,
+      httpOnly: true,
+    });
+    // res.status(200).json({ msg: "Autenticação reaizada com sucesso", token });
   } catch (err) {
     console.log(err);
   }

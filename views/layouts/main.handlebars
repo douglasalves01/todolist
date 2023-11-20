@@ -11,10 +11,14 @@
         <h1>logo</h1>
       </a>
       <ul>
-        <li><a href="/todo/dashboard">Dashboard</a></li>
-        <li><a href="/logout">Sair</a></li>
-        <li><a href="/login">Entrar</a></li>
-        <li><a href="/register">Registrar</a></li>
+        <li><a href="/">Pensamentos</a></li>
+        {{#if jwt}}
+          <li><a href="/toughts/dashboard">Dashboard</a></li>
+          <li><a href="/logout">Sair</a></li>
+        {{else}}
+          <li><a href="/login">Entrar</a></li>
+          <li><a href="/register">Registrar</a></li>
+        {{/if}}
       </ul>
     </nav>
     <div class="container">
