@@ -30,11 +30,11 @@ app.use((req, res, next) => {
   }
   next();
 });
-// app.get("/", (req, res) => {
-//   // O valor do JWT estará disponível em res.locals.jwt em todas as rotas
-//   const jwt = res.locals.jwt;
-//   // Restante da lógica da rota...
-// });
+app.get("/", (req, res) => {
+  // O valor do JWT estará disponível em res.locals.jwt em todas as rotas
+  const jwt = res.locals.jwt;
+  // Restante da lógica da rota...
+});
 
 app.use("/", authRouter);
 app.use("/", todoRouter);

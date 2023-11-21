@@ -33,6 +33,27 @@ export async function criarUsuario(email, password) {
     console.log("Erro na execução do sql", error);
   }
 }
+export async function criarCategoria(categoria) {
+  try {
+    const sql = `INSERT INTO CATEGORIAS 
+       (ID_CATEGORIA, DESCRICAO )
+       VALUES
+       (SEQ_USER.NEXTVAL, :1)`;
+    const dados = [categoria];
+    let resSql = await (await conn).execute(sql, dados);
+
+    await (await conn).commit();
+
+    const rowsInserted = resSql.rowsAffected;
+    if (rowsInserted !== undefined && rowsInserted === 1) {
+      console.log("Dados inseridos");
+    } else if (rowsInserted === undefined) {
+      console.log("Nenhum dado inserido");
+    }
+  } catch (error) {
+    console.log("Erro na execução do sql", error);
+  }
+}
 export async function retornarDados(sql, dados) {
   try {
     let resSql = await (await conn).execute(sql, dados);
