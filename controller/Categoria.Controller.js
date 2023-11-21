@@ -63,8 +63,6 @@ export class CategoriaController {
   static async updateCategoria(req, res) {
     const idCategoria = req.params.id;
     const descricao = req.body.descricao;
-    console.log(descricao);
-    console.log(idCategoria);
   }
   static async deleteCategoria(req, res) {
     const idCategoria = req.params.id;

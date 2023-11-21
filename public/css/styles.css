@@ -1,5 +1,6 @@
 @import "./categoria.css";
 @import "./auth.css";
+@import "./todos.css";
 :root {
   --background-dark: #031424;
   --background-light: #30415d;
