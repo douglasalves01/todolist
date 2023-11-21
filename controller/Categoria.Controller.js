@@ -2,7 +2,29 @@ import express from "express";
 import { criarCategoria, retornarDados } from "../db/conn.js";
 
 export class CategoriaController {
-  static createCategoria(req, res) {
+  static async createCategoria(req, res) {
+    try {
+      const selectSql = `
+        SELECT * FROM CATEGORIAS`;
+
+      const result = await retornarDados(selectSql, []);
+
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idCategoria: item[0],
+          descricao: item[1],
+        }));
+      }
+
+      res.render("categoria/createCategoria", { categorias: dados });
+    } catch (e) {
+      if (e instanceof Error) {
+        console.log(e);
+      } else {
+        cr.message = "Erro ao conectar ao oracle. Sem detalhes";
+      }
+    }
     res.render("categoria/createCategoria");
   }
   static async createCategoriaPost(req, res) {
@@ -22,5 +44,6 @@ export class CategoriaController {
     } catch (error) {
       console.log(error);
     }
+    res.redirect("/categoria");
   }
 }

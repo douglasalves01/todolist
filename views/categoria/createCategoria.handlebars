@@ -15,17 +15,19 @@
   <div class="main">
     <section class="lista-categoria">
       <h2>Categorias</h2>
-      <div id="categorias">
-        <div class="categoria">
-          <div class="content">
-            <input type="text" class="text" value="Minha categoria" />
-          </div>
-          <div class="actions">
-            <button class="editar">Editar</button>
-            <button class="excluir">Excluir</button>
+      {{#each categorias}}
+        <div id="categorias">
+          <div class="categoria">
+            <div class="content">
+              <input type="text" class="text" value={{this.descricao}} />
+            </div>
+            <div class="actions">
+              <button class="editar">Editar</button>
+              <button class="excluir">Excluir</button>
+            </div>
           </div>
         </div>
-      </div>
+      {{/each}}
     </section>
   </div>
 

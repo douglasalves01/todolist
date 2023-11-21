@@ -89,7 +89,7 @@
   transition: 0.4s;
 }
 #categorias .categoria .content .text:not(:read-only) {
-  color: var(--color-hover-button);
+  color: #fff;
 }
 #categorias .categoria .actions {
   display: flex;
