@@ -1,6 +1,7 @@
 import express from "express";
 import { create } from "express-handlebars";
-import { checkToken, conn } from "./db/conn.js";
+import { conn } from "./db/conn.js";
+import { checkToken } from "./helpers/user.js";
 import { authRouter } from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";

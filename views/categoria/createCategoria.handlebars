@@ -19,11 +19,23 @@
         <div id="categorias">
           <div class="categoria">
             <div class="content">
-              <input type="text" class="text" value={{this.descricao}} />
+              <input
+                type="text"
+                name="descricao"
+                class="text"
+                value={{this.descricao}}
+              />
             </div>
             <div class="actions">
-              <button class="editar">Editar</button>
-              <button class="excluir">Excluir</button>
+              <form action="/categoria/{{this.idCategoria}}" method="POST">
+                <button class="editar">Editar</button>
+              </form>
+              <form
+                action="/deleteCategoria/{{this.idCategoria}}"
+                method="POST"
+              >
+                <button class="excluir">Excluir</button>
+              </form>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import express from "express";
-import { checkToken, criarUsuario, retornarDados, signIn } from "../db/conn.js";
-
+import bcryptjs from "bcryptjs";
+import { signIn } from "../helpers/user.js";
+import { executaSql, retornarDados } from "../helpers/banco.js";
 export class AuthController {
   static login(req, res) {
     res.render("auth/login");
@@ -10,6 +11,7 @@ export class AuthController {
     const password = req.body.password;
     const sql = `SELECT * FROM USERS WHERE EMAIL = '${email}'`;
     const result = await retornarDados(sql, []);
+
     if (result.length === 0) {
       return res.status(422).json({ msg: "Por favor, utilize outro e-mail" });
     } else {
@@ -32,6 +34,13 @@ export class AuthController {
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+    const salt = await bcryptjs.genSalt(12);
+    let passwordHash = await bcryptjs.hash(password, salt);
+    const sqlUser = `INSERT INTO USERS 
+         (ID_USER, EMAIL, PASSWORD )
+         VALUES
+         (SEQ_USER.NEXTVAL, :1, :2)`;
+    const dados = [email, passwordHash];
     try {
       if (password != confirmPassword) {
         return res.status(422).json({ msg: "As senhas não conferem!" });
@@ -39,7 +48,7 @@ export class AuthController {
       const sql = `SELECT * FROM USERS WHERE EMAIL = '${email}'`;
       const result = await retornarDados(sql, []);
       if (result.length === 0) {
-        criarUsuario(email, password);
+        executaSql(sqlUser, dados);
       } else {
         return res.status(422).json({ msg: "Por favor, utilize outro e-mail" });
       }

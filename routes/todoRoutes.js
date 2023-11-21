@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { checkToken } from "../db/conn.js";
+import { checkToken } from "../helpers/user.js";
 import { TodoController } from "../controller/TodoController.js";
 
 export const todoRouter = express.Router();
