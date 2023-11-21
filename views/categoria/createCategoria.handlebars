@@ -1,0 +1,32 @@
+<div class="categoria-container">
+  <div class="header-categoria">
+    <h1>Lista Categoria</h1>
+    <form action="/categoria" method="POST" id="nova-categoria-form">
+      <input
+        type="text"
+        name="categoria"
+        id="nova-categoria-input"
+        placeholder="Insira a categoria"
+        required
+      />
+      <input type="submit" id="nova-categoria-submit" value="Add categoria" />
+    </form>
+  </div>
+  <div class="main">
+    <section class="lista-categoria">
+      <h2>Categorias</h2>
+      <div id="categorias">
+        <div class="categoria">
+          <div class="content">
+            <input type="text" class="text" value="Minha categoria" />
+          </div>
+          <div class="actions">
+            <button class="editar">Editar</button>
+            <button class="excluir">Excluir</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>

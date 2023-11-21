@@ -5,6 +5,7 @@ import { authRouter } from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 import { todoRouter } from "./routes/todoRoutes.js";
+import { categoriaRouter } from "./routes/categoriaRoutes.js";
 const app = express();
 app.use(
   express.urlencoded({
@@ -37,11 +38,12 @@ app.use((req, res, next) => {
 
 app.use("/", authRouter);
 app.use("/", todoRouter);
+app.use("/", categoriaRouter);
 
 app.listen(3333, async () => {
   try {
     if (await conn) {
-      console.log("App funcionando em http://localhost:3333/home");
+      console.log("App funcionando em http://localhost:3333/login");
     }
   } catch (error) {
     console.log(error);
