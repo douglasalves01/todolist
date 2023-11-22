@@ -125,6 +125,24 @@ export class TodoController {
       res.redirect("/todo");
     }
   }
+  static async recuperarTodo(req, res) {
+    const idTodo = req.params.id;
+    const secret = process.env.SECRET;
+    const token = req.cookies.jwt;
+    let ident = jwt.verify(token, secret);
+    let id_user = ident.id;
+    const sql = `UPDATE TODOS SET REMOVIDO =0 WHERE ID_TODO= '${idTodo}' AND ID_USER = ${id_user}`;
+
+    try {
+      await excluirDados(sql);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ status: "ERROR", message: `Erro na exclusão: Erro` });
+    } finally {
+      res.redirect("/todo");
+    }
+  }
   static async todoGeral(req, res) {
     try {
       const secret = process.env.SECRET;

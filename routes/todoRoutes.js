@@ -7,6 +7,7 @@ export const todoRouter = express.Router();
 todoRouter.get("/todo", checkToken, TodoController.createTodo);
 todoRouter.post("/todo", checkToken, TodoController.createTodoPost);
 todoRouter.post("/deleteTodo/:id", checkToken, TodoController.deleteTodo);
+todoRouter.post("/recuperarTodo/:id", checkToken, TodoController.recuperarTodo);
 
 // rotas com filtros de to-dos
 todoRouter.get("/todo/geral", checkToken, TodoController.todoGeral);
