@@ -10,7 +10,7 @@ export class CategoriaController {
       let ident = jwt.verify(token, secret);
       let id_user = ident.id;
       const selectSql = `
-        SELECT * FROM CATEGORIAS WHERE ID_USER ='${id_user}'`;
+        SELECT * FROM CATEGORIAS WHERE ID_USER = '${id_user}'`;
 
       const result = await retornarDados(selectSql, []);
 
@@ -20,6 +20,9 @@ export class CategoriaController {
           idCategoria: item[0],
           descricao: item[1],
         }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
       }
 
       res.render("categoria/createCategoria", { categorias: dados });
@@ -30,7 +33,6 @@ export class CategoriaController {
         cr.message = "Erro ao conectar ao oracle. Sem detalhes";
       }
     }
-    res.render("categoria/createCategoria");
   }
   static async createCategoriaPost(req, res) {
     const secret = process.env.SECRET;
@@ -43,11 +45,11 @@ export class CategoriaController {
     const sql2 = `INSERT INTO CATEGORIAS 
        (ID_CATEGORIA, DESCRICAO, ID_USER )
        VALUES
-       (SEQ_USER.NEXTVAL, :1,:2)`;
+       (SEQ_CATEGORIA.NEXTVAL, :1,:2)`;
     const dados = [categoria, id_user];
     try {
-      if (categoria.length < 4) {
-        res.status(400).send("categoria deve ter no mínimo 4 caracteres");
+      if (categoria.length < 5) {
+        res.status(400).send("categoria deve ter no mínimo 5 caracteres");
       }
       if (result.length === 0) {
         //cadastrar categoria

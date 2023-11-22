@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 import { todoRouter } from "./routes/todoRoutes.js";
 import { categoriaRouter } from "./routes/categoriaRoutes.js";
+import { dashRouter } from "./routes/dashboardRoutes.js";
 const app = express();
 app.use(
   express.urlencoded({
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 app.use("/", authRouter);
 app.use("/", todoRouter);
 app.use("/", categoriaRouter);
+app.use("/", dashRouter);
 
 app.listen(3333, async () => {
   try {

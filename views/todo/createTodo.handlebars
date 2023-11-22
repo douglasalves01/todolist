@@ -1,7 +1,7 @@
 <div class="todo-container">
   <div class="header-todo">
     <h1>Lista To-do</h1>
-    <form action="#" method="POST" id="nova-todo-form">
+    <form action="/todo" method="POST" id="nova-todo-form">
       <input
         type="text"
         name="titulo"
@@ -17,44 +17,20 @@
         required
       />
       <div class="control-input">
-        <label for="date">Vencimento</label>
-        <input type="date" name="date" id="#nova-todo-input-date" />
+        <label for="vencimento">Vencimento</label>
+        <input type="date" name="vencimento" id="#nova-todo-input-date" />
       </div>
       <div class="control-input">
         <label for="idCategoria">Categoria</label>
         <select name="idCategoria">
-          <option value="{{this.idCategoria}}">Sem Categoria</option>
-          {{!-- {{#each categorias}} --}}
-          <option value="{{this.idCategoria}}">teste</option>
-          {{!-- {{/each}} --}}
+          <option value="sem">Sem Categoria</option>
+          {{#each categorias}}
+            <option value="{{this.idCategoria}}">{{this.descricao}}</option>
+          {{/each}}
         </select>
       </div>
 
       <input type="submit" id="nova-todo-submit" value="Add To-do" />
     </form>
   </div>
-  {{! <div class="main">
-    <section class="lista-todo">
-      <h2>Todos</h2>
-
-      <div id="todos">
-        <div class="todo">
-          <div class="content">
-            <input type="text" name="titulo" class="text" required />
-          </div>
-
-          <div class="actions">
-            <form action="#" method="POST">
-              <button class="editar">Editar</button>
-            </form>
-            <form action="#" method="POST">
-              <button class="excluir">Excluir</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </section>
-  </div> }}
-
 </div>
