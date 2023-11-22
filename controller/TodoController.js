@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { retornarDados, executaSql } from "../helpers/banco.js";
+import { retornarDados, executaSql, excluirDados } from "../helpers/banco.js";
 
 export class TodoController {
   static async createTodo(req, res) {
@@ -106,6 +106,21 @@ export class TodoController {
       console.log(error);
     }
     res.redirect("/todo");
+  }
+  static async deleteTodo(req, res) {
+    const idTodo = req.params.id;
+
+    const sql = `DELETE FROM TODOS WHERE ID_TODO = '${idTodo}'`;
+
+    try {
+      await excluirDados(sql);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ status: "ERROR", message: `Erro na exclusão: Erro` });
+    } finally {
+      res.redirect("/todo");
+    }
   }
   static async todoGeral(req, res) {
     try {

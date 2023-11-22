@@ -23,14 +23,14 @@
             <td>{{this.descricao}}</td>
             <td>{{this.vencimento}}</td>
             <td>{{this.categoria}}</td>
-            <td class="button"><button><a
+            <td class="button"><button id="button-visualizar"><a
                   href="#"
                 >Editar</a></td>
             <td class="button">
               <form
                 action="/excluir/aeronave/{{this.idAeronave}}"
                 method="POST"
-              ><button type="submit">Excluir</button></form></td>
+              ><button id="button-visualizar" type="submit">Excluir</button></form></td>
           </tr>
           </tr>
         {{/each}}

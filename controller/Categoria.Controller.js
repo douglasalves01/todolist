@@ -20,9 +20,6 @@ export class CategoriaController {
           idCategoria: item[0],
           descricao: item[1],
         }));
-
-        //console.log(dados[0]);
-        //console.log(dados);
       }
 
       res.render("categoria/createCategoria", { categorias: dados });

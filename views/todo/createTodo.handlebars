@@ -33,5 +33,33 @@
       <input type="submit" id="nova-todo-submit" value="Add To-do" />
     </form>
   </div>
+  <div class="main">
+    <section class="lista-categoria">
+      <h2>To-dos</h2>
 
+      <div id="categorias">
+        {{#each todos}}
+          <div class="categoria">
+            <div class="content">
+              <input
+                type="text"
+                name="descricao"
+                class="text"
+                value={{this.titulo}}
+              />
+            </div>
+            <div class="actions">
+              <form action="/todo/{{this.idTodo}}" method="POST">
+                <button class="editar">Editar</button>
+              </form>
+              <form action="/deleteTodo/{{this.idTodo}}" method="POST">
+                <button class="excluir">Excluir</button>
+              </form>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+
+    </section>
+  </div>
 </div>

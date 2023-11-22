@@ -3,7 +3,7 @@
 @import "./todos.css";
 @import "./dashboard.css";
 @import "./visualizar.css";
-@import "./button.css";
+
 :root {
   --background-dark: #031424;
   --background-light: #30415d;

@@ -1,4 +1,4 @@
-button {
+#button-visualizar {
   background-color: var(--color-hover-button);
   color: var(--background-dark);
   padding: 0.8rem 1rem;
@@ -9,10 +9,10 @@ button {
   font-size: 1rem;
   font-family: "Open sans", sans-serif;
 }
-button > a {
+#button-visualizar > a {
   color: var(--background-dark);
 }
 
-button:hover {
+#button-visualizar:hover {
   opacity: 0.8;
 }
