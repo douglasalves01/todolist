@@ -107,4 +107,202 @@ export class TodoController {
     }
     res.redirect("/todo");
   }
+  static async todoGeral(req, res) {
+    try {
+      const secret = process.env.SECRET;
+      const token = req.cookies.jwt;
+      let ident = jwt.verify(token, secret);
+      let id_user = ident.id;
+
+      const selectSql = `
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}'`;
+
+      const result = await retornarDados(selectSql, []);
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          categoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("visualizar/geral", { todos: dados });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async todoSemCategoria(req, res) {
+    try {
+      const secret = process.env.SECRET;
+      const token = req.cookies.jwt;
+      let ident = jwt.verify(token, secret);
+      let id_user = ident.id;
+      const sql = `SELECT * FROM CATEGORIAS WHERE ID_USER = '${id_user}'`;
+      const result = await retornarDados(sql, []);
+
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idCategoria: item[0],
+          descricao: item[1],
+        }));
+      }
+      const selectSql = `
+        SELECT * FROM TODOS WHERE ID_USER = '${id_user}'`;
+
+      const result2 = await retornarDados(selectSql, []);
+      let dados2;
+      if (result2) {
+        dados2 = result2.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          idCategoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("visualizar/semCategoria", {
+        categorias: dados,
+        todos: dados2,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async todoVencida(req, res) {
+    try {
+      const secret = process.env.SECRET;
+      const token = req.cookies.jwt;
+      let ident = jwt.verify(token, secret);
+      let id_user = ident.id;
+
+      const selectSql = `
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO < TRUNC(SYSDATE)`;
+
+      const result = await retornarDados(selectSql, []);
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          categoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("visualizar/vencida", { todos: dados });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async todoPrazo(req, res) {
+    try {
+      const secret = process.env.SECRET;
+      const token = req.cookies.jwt;
+      let ident = jwt.verify(token, secret);
+      let id_user = ident.id;
+
+      const selectSql = `
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO >= TRUNC(SYSDATE)`;
+
+      const result = await retornarDados(selectSql, []);
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          categoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("visualizar/prazo", { todos: dados });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async todoSemPrazo(req, res) {
+    try {
+      const secret = process.env.SECRET;
+      const token = req.cookies.jwt;
+      let ident = jwt.verify(token, secret);
+      let id_user = ident.id;
+
+      const selectSql = `
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO IS NULL`;
+
+      const result = await retornarDados(selectSql, []);
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          categoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("visualizar/semPrazo", { todos: dados });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async todoRemovida(req, res) {
+    try {
+      const secret = process.env.SECRET;
+      const token = req.cookies.jwt;
+      let ident = jwt.verify(token, secret);
+      let id_user = ident.id;
+
+      const selectSql = `
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND REMOVIDO = 1`;
+
+      const result = await retornarDados(selectSql, []);
+      let dados;
+      if (result) {
+        dados = result.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          categoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("visualizar/removida", { todos: dados });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

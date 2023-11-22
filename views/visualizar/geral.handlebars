@@ -1,0 +1,43 @@
+<div class="container-visualizar">
+  <div class="header-visualizar">
+    <h1>Minhas to-dos</h1>
+  </div>
+  <div class="control-dados table-responsive">
+    <table id="datatable" class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Titulo</th>
+          <th>Descrição</th>
+          <th>Vencimento</th>
+          <th>Categoria</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each todos}}
+          <tr>
+            <td>{{this.idTodo}}</td>
+            <td>{{this.titulo}}</td>
+            <td>{{this.descricao}}</td>
+            <td>{{this.vencimento}}</td>
+     
+            <td>{{this.categoria}}</td>
+            
+            
+            <td class="button"><button><a
+                  href="#"
+                >Editar</a></td>
+            <td class="button">
+              <form
+                action="/excluir/aeronave/{{this.idAeronave}}"
+                method="POST"
+              ><button type="submit">Excluir</button></form></td>
+          </tr>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

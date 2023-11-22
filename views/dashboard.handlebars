@@ -6,47 +6,47 @@
           <h4>{{this.qtdeGeral}}</h4>
           <h5>Total de tarefas</h5>
         </div>
-        <a href="#">Acessar</a>
+        <a href="/todo/geral">Acessar</a>
       </div>
       <div class="card">
         <div class="card-content">
           <h4>{{this.qtdeSemCategoria}}</h4>
           <h5>Tarefas sem categoria</h5>
         </div>
-        <a href="#">Acessar</a>
+        <a href="/todo/semcategoria">Acessar</a>
       </div>
       <div class="card">
         <div class="card-content">
-          {{#if this.Vencida}}
-            <h4>{{this.Vencida}}</h4>
+          {{#if this.qtdeVencida}}
+            <h4>{{this.qtdeVencida}}</h4>
           {{else}}
             <h4>0</h4>
           {{/if}}
 
           <h5>Tarefas Vencidas</h5>
         </div>
-        <a href="#">Acessar</a>
+        <a href="/todo/vencida">Acessar</a>
       </div>
       <div class="card">
         <div class="card-content">
           <h4>{{this.qtdePrazo}}</h4>
           <h5>Tarefas no prazo</h5>
         </div>
-        <a href="#">Acessar</a>
+        <a href="/todo/prazo">Acessar</a>
       </div>
       <div class="card">
         <div class="card-content">
           <h4>{{this.qtdeSemPrazo}}</h4>
           <h5>Tarefas sem prazo de vencimento</h5>
         </div>
-        <a href="#">Acessar</a>
+        <a href="/todo/semprazo">Acessar</a>
       </div>
       <div class="card">
         <div class="card-content">
           <h4>{{this.qtdeRemovida}}</h4>
           <h5>Tarefas removidas</h5>
         </div>
-        <a href="#">Acessar</a>
+        <a href="/todo/removida">Acessar</a>
       </div>
     </div>
   {{/each}}

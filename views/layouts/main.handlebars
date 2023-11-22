@@ -2,12 +2,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="/css/styles.css" />
     <title>Todo</title>
   </head>
   <body>
-    <nav id="navbar">
-      <a href="/" id="logo">
+    <nav id="navbar-todo">
+      <a href="/" id="logo-todo">
         <h1>Todo-List</h1>
       </a>
       <ul>
@@ -22,9 +29,19 @@
         {{/if}}
       </ul>
     </nav>
-    <div class="container">
+    <div class="container-main">
       {{{body}}}
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script
+      src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"
+    ></script>
+    <script>
+      $().DataTable(); new DataTable('#datatable');
 
+    </script>
   </body>
 </html>

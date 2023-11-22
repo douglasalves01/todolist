@@ -1,0 +1,49 @@
+.container-visualizar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header-visualizar {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+}
+.control-dados {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Open sans", sans-serif;
+}
+.dataTables_wrapper {
+  width: 100%;
+}
+tr,
+td {
+  text-align: left;
+  padding: 5px 2px;
+  color: var(--background-dark);
+  font-weight: 700;
+}
+
+.row {
+  color: var(--background-dark);
+  font-weight: 700;
+}
+.button button {
+  height: 45px;
+}
+.button a:hover {
+  color: var(--background-dark);
+}
+a.page-link {
+  color: var(--color-hover-button);
+}
+#datatable_info {
+  color: var(--color-hover-button);
+}

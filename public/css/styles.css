@@ -2,6 +2,8 @@
 @import "./auth.css";
 @import "./todos.css";
 @import "./dashboard.css";
+@import "./visualizar.css";
+@import "./button.css";
 :root {
   --background-dark: #031424;
   --background-light: #30415d;
@@ -23,11 +25,13 @@ input[type="submit"] {
   cursor: pointer;
 }
 /* NAVBAR */
-#logo img {
+#logo-todo {
   height: 40px;
 }
-
-#navbar {
+#logo-todo h1 {
+  font-size: 1.5rem;
+}
+#navbar-todo {
   padding: 1.2em 2.4em;
   margin-bottom: 1em;
   display: flex;
@@ -35,34 +39,36 @@ input[type="submit"] {
   align-items: center;
   background-color: var(--background-dark);
   color: #fff;
+  height: 10%;
 }
-#navbar a {
+#navbar-todo a {
   text-decoration: none;
 }
-#navbar h1 {
+#navbar-todo h1 {
   color: #fff;
 }
-#navbar ul {
+#navbar-todo ul {
   display: flex;
+  align-items: center;
   list-style: none;
 }
 
-#navbar ul li {
+#navbar-todo ul li {
   margin-left: 1em;
 }
 
-#navbar ul li a {
+#navbar-todo ul li a {
   text-decoration: none;
   color: #fff;
   transition: 0.5s;
   font-weight: bold;
 }
 
-#navbar ul li a:hover {
+#navbar-todo ul li a:hover {
   color: var(--color-hover-button);
 }
 
-.container {
-  min-height: 60vh;
+.container-main {
+  height: 80vh;
   padding: 2em;
 }
