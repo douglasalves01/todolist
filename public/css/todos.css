@@ -83,7 +83,7 @@
 #nova-todo-submit:active {
   color: #eea3a2;
 }
-/* }
+
 .main {
   flex: 1 1 0%;
   max-width: 800px;
@@ -137,4 +137,4 @@
 .todo .actions .editar,
 .todo .actions .excluir {
   color: var(--color-hover-button);
-} */
+}

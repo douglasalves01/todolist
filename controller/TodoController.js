@@ -3,9 +3,6 @@ import jwt from "jsonwebtoken";
 import { retornarDados, executaSql } from "../helpers/banco.js";
 
 export class TodoController {
-  static showTodos(req, res) {
-    res.render("todo/dashboard");
-  }
   static async createTodo(req, res) {
     try {
       const secret = process.env.SECRET;
@@ -22,7 +19,26 @@ export class TodoController {
           descricao: item[1],
         }));
       }
-      res.render("todo/createTodo", { categorias: dados });
+      const selectSql = `
+        SELECT * FROM TODOS WHERE ID_USER = '${id_user}'`;
+
+      const result2 = await retornarDados(selectSql, []);
+      let dados2;
+      if (result2) {
+        dados2 = result2.map((item) => ({
+          idTodo: item[0],
+          titulo: item[1],
+          descricao: item[2],
+          vencimento: item[3],
+          removido: item[4],
+          idCategoria: item[5],
+          idUser: item[6],
+        }));
+
+        //console.log(dados[0]);
+        //console.log(dados);
+      }
+      res.render("todo/createTodo", { categorias: dados, todos: dados2 });
     } catch (error) {
       console.log(error);
     }
@@ -38,6 +54,7 @@ export class TodoController {
     const token = req.cookies.jwt;
     let ident = jwt.verify(token, secret);
     let id_user = ident.id;
+    let hoje = new Date();
     const sql = `SELECT * FROM TODOS WHERE TITULO = '${titulo}' AND ID_USER = '${id_user}'`;
 
     const result = await retornarDados(sql, []);
@@ -58,6 +75,13 @@ export class TodoController {
       }
       if (descricao.length < 20) {
         res.status(400).send("descrição deve ter no mínimo 20 caracteres");
+      }
+
+      let dataVencimento = new Date(vencimento);
+      if (dataVencimento < hoje && vencimento !== null) {
+        res
+          .status(400)
+          .send("A data de cadastro não pode ser anterior ao dia de hoje");
       }
       const sql2 = `INSERT INTO TODOS 
       (ID_TODO, TITULO, DESCRICAO,VENCIMENTO,REMOVIDO,ID_CATEGORIA,ID_USER )
