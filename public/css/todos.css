@@ -48,7 +48,7 @@
 .control-input label {
   width: 25%;
   margin-right: 1.5rem;
-  color: var(--background-dark);
+  color: #fff;
   font-weight: 700;
 }
 .control-input input[type="date"],
@@ -82,59 +82,4 @@
 }
 #nova-todo-submit:active {
   color: #eea3a2;
-}
-
-.main {
-  flex: 1 1 0%;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-}
-.lista-todo {
-  padding: 1rem;
-}
-.lista-todo h2 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: #fff;
-  margin-bottom: 1rem;
-}
-#todos .todo {
-  display: flex;
-  justify-content: space-between;
-  background: var(--background-dark);
-  padding: 1rem;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-}
-#todos .todo .content .text {
-  color: #fff;
-  font-size: 0.8rem;
-  width: 100%;
-  display: flex;
-  transition: 0.4s;
-}
-#todos .todo .content .text:not(:read-only) {
-  color: #fff;
-}
-#todos .todo .actions {
-  display: flex;
-  margin: 0 -0.5rem;
-}
-.todo .actions button {
-  margin: 0 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: 0.4s;
-}
-.todo .actions button:hover {
-  opacity: 0.9;
-}
-.todo .actions button:active {
-  color: #eea3a2;
-}
-.todo .actions .editar,
-.todo .actions .excluir {
-  color: var(--color-hover-button);
 }

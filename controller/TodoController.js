@@ -105,5 +105,6 @@ export class TodoController {
     } catch (error) {
       console.log(error);
     }
+    res.redirect("/todo");
   }
 }

@@ -6,8 +6,8 @@ a {
   height: 100%;
 }
 .card {
-  width: 250px;
-  height: 120px;
+  width: 350px;
+  height: 180px;
   background: var(--background-dark);
   border-radius: 5px;
 }
@@ -28,7 +28,7 @@ a {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 200px;
+  grid-template-rows: 350px;
 }
 .card-content {
   height: 80%;
@@ -36,4 +36,13 @@ a {
 }
 .card-content h4 {
   margin-bottom: 2rem;
+}
+@media screen and (max-width: 1500px) {
+  .card {
+    width: 280px;
+    height: 140px;
+  }
+  .control-card {
+    grid-template-rows: 200px;
+  }
 }
