@@ -20,7 +20,7 @@ export class TodoController {
         }));
       }
       const selectSql = `
-        SELECT * FROM TODOS WHERE ID_USER = '${id_user}'`;
+        SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND REMOVIDO = 0`;
 
       const result2 = await retornarDados(selectSql, []);
       let dados2;
@@ -109,8 +109,11 @@ export class TodoController {
   }
   static async deleteTodo(req, res) {
     const idTodo = req.params.id;
-
-    const sql = `DELETE FROM TODOS WHERE ID_TODO = '${idTodo}'`;
+    const secret = process.env.SECRET;
+    const token = req.cookies.jwt;
+    let ident = jwt.verify(token, secret);
+    let id_user = ident.id;
+    const sql = `UPDATE TODOS SET REMOVIDO =1 WHERE ID_TODO= '${idTodo}' AND ID_USER = ${id_user}`;
 
     try {
       await excluirDados(sql);
