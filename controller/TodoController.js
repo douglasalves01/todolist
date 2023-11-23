@@ -155,7 +155,7 @@ export class TodoController {
         .status(500)
         .json({ status: "ERROR", message: `Erro na exclusão: Erro` });
     } finally {
-      res.redirect("/todo");
+      res.redirect("/todo/removida");
     }
   }
 }

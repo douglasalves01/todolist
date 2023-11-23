@@ -9,9 +9,10 @@ export class ShowController {
       let id_user = ident.id;
       //retorna todas as to-dos cadastradas(geral)
       const selectSql = `
-      SELECT * FROM TODOS WHERE ID_USER = '${id_user}'`;
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND REMOVIDO = 0`;
 
       const result = await retornarDados(selectSql, []);
+      console.log(result);
       let dados;
       if (result) {
         dados = result.map((item) => ({
@@ -39,18 +40,8 @@ export class ShowController {
       let ident = jwt.verify(token, secret);
       let id_user = ident.id;
       //retornar to-dos que foram cadastradas sem um categoria definida
-      const sql = `SELECT * FROM CATEGORIAS WHERE ID_USER = '${id_user}'`;
-      const result = await retornarDados(sql, []);
-
-      let dados;
-      if (result) {
-        dados = result.map((item) => ({
-          idCategoria: item[0],
-          descricao: item[1],
-        }));
-      }
       const selectSql = `
-        SELECT * FROM TODOS WHERE ID_USER = '${id_user}'`;
+        SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND ID_CATEGORIA IS NULL AND REMOVIDO =0`;
 
       const result2 = await retornarDados(selectSql, []);
       let dados2;
@@ -69,7 +60,6 @@ export class ShowController {
         //console.log(dados);
       }
       res.render("visualizar/semCategoria", {
-        categorias: dados,
         todos: dados2,
       });
     } catch (error) {
@@ -84,7 +74,7 @@ export class ShowController {
       let id_user = ident.id;
       //retornar to-dos que estão com status de vencida(data cadastrada < data de hoje)
       const selectSql = `
-      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO < TRUNC(SYSDATE)`;
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO < TRUNC(SYSDATE) AND REMOVIDO =0`;
 
       const result = await retornarDados(selectSql, []);
       let dados;
@@ -115,7 +105,7 @@ export class ShowController {
       let id_user = ident.id;
       //retornar to-dos que estão no prazo
       const selectSql = `
-      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO >= TRUNC(SYSDATE)`;
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO >= TRUNC(SYSDATE) AND REMOVIDO =0`;
 
       const result = await retornarDados(selectSql, []);
       let dados;
@@ -146,7 +136,7 @@ export class ShowController {
       let id_user = ident.id;
       //retornado to-dos que foram cadastradas sem um prazo definido
       const selectSql = `
-      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO IS NULL`;
+      SELECT * FROM TODOS WHERE ID_USER = '${id_user}' AND VENCIMENTO IS NULL AND REMOVIDO =0`;
 
       const result = await retornarDados(selectSql, []);
       let dados;
