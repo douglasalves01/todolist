@@ -1,7 +1,5 @@
 import oracledb from "oracledb";
-import bcryptjs from "bcryptjs";
 import * as dotenv from "dotenv";
-import jwt from "jsonwebtoken";
 
 dotenv.config();
 

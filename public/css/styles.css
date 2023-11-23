@@ -3,6 +3,7 @@
 @import "./todos.css";
 @import "./dashboard.css";
 @import "./visualizar.css";
+@import "./editTodo.css";
 
 :root {
   --background-dark: #031424;

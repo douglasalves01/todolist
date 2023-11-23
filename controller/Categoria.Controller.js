@@ -49,7 +49,7 @@ export class CategoriaController {
         res.status(400).send("categoria deve ter no mínimo 5 caracteres");
       }
       if (result.length === 0) {
-        //cadastrar categoria
+        //não existe essa categoria ainda
         executaSql(sql2, dados);
       } else {
         res.status(400).send("Essa categoria já está cadastrada");
@@ -60,8 +60,7 @@ export class CategoriaController {
     res.redirect("/categoria");
   }
   static async updateCategoria(req, res) {
-    const idCategoria = req.params.id;
-    const descricao = req.body.descricao;
+    //alterar uma categoria
   }
   static async deleteCategoria(req, res) {
     const idCategoria = req.params.id;

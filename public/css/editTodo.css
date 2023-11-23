@@ -1,0 +1,30 @@
+.edit-todo-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-control-card {
+  width: 250px;
+  height: 300px;
+  border: 2px solid red;
+  display: flex;
+}
+.card-info {
+  width: 80%;
+  padding: 1rem;
+}
+.info-text {
+  width: 100%;
+  height: 70%;
+}
+.info-detalhes {
+  width: 100%;
+  height: 30%;
+}
+.card-status {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
